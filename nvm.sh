@@ -802,7 +802,7 @@ nvm_strip_path() {
     path = substr($0, length(NVM_DIR) + 1)
     if (path ~ "^(/versions/[^/]*)?/[^/]*'"${2-}"'.*$") { next }
   }
-  { print }' | command paste -s -d: -
+  { printf "%s%s", sep, $0; sep=RS } END { printf "%s", RT }'
 }
 
 nvm_change_path() {
