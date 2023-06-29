@@ -802,6 +802,7 @@ nvm_strip_path() {
     path = substr($0, length(NVM_DIR) + 1)
     if (path ~ "^(/versions/[^/]*)?/[^/]*'"${2-}"'.*$") { next }
   }
+  # The final RT will contain a colon if the input has a trailing colon, or a null string otherwise
   { printf "%s%s", sep, $0; sep=RS } END { printf "%s", RT }'
 }
 
